@@ -11,6 +11,7 @@ from app.api.v1.schema.enum import ResponseStatus
 
 register_router = APIRouter(prefix="/register", tags=["Register"])
 
+
 @register_router.post(
     "",
     summary=RegisterApiSummaryDocs.POST_REGISTER,

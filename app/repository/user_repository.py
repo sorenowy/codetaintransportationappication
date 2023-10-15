@@ -1,7 +1,6 @@
 from app.database.config.connection import prisma_connection
 from app.model.user import User, UserRequestDTO
 
-
 class UserRepository:
     
     @staticmethod
