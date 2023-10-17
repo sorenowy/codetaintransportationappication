@@ -1,0 +1,8 @@
+fastAPI~=0.103.2
+uvicorn~=0.23.2
+prisma~=0.10.0
+fastapi-mail~=1.4.1
+pyJWT
+python-multipart
+jinja2
+pytest
