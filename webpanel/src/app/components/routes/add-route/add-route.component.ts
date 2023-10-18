@@ -28,6 +28,7 @@ export class AddRouteComponent {
 
     this.routeService.addRoute(route).subscribe((response: any) => {
         this.router.navigate(['/routes'])
-    })
+    }, (error) => { alert(error.error.detail) }
+    )
   }
 }

@@ -24,20 +24,17 @@ export class LoginComponent {
     };
 
     this.authService.login(credentials).subscribe((response: any) => {
-      console.log(response)
       const token = response.result.token;
-      console.log(token) // Adjust this based on your API response
       const decoded_token = helper.decodeToken(token);
-      decoded_token
       for (var key in decoded_token) {
         if (key == 'is_admin') {
           var value = decoded_token[key]
           localStorage.setItem('is_admin', value);
         }
       }
-      console.log(localStorage.getItem('is_admin'))
       localStorage.setItem('access-token', token);
       this.router.navigate(['routes']); // Navigate to your dashboard or desired route
-    });
+    }, (error) => { alert(error.error.detail) }
+    );
   }
 }

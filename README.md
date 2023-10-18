@@ -36,6 +36,8 @@ An application that manages transport routes for registered users.
 1. Add new entity, or changes in /database/prisma/schema.prisma
 2. run command `prisma migrate dev --schema ./app/database/prisma/schema.prisma` - this will apply migrations and purge the database
 
+## tests
+* To run tests, simply go to /app folder, and execute `pytest` command.
 
 ## Swagger
 Swagger is located at: http://localhost:8000/docs
@@ -43,11 +45,5 @@ Swagger is located at: http://localhost:8000/docs
 ## MailDev
 It's an opensource SMTP server with graphical inbox hosted on http://localhost:1080 - it is used for validation purposes of registered users
 
-## TODO:
-[ ] - check jinja templates if they're able to manage REST-Template cross-talk, if not, stick to Angular.
-[ ] - create all necessary views
-[ ] - Add summaries, and all necessities to Swagger docs
-[ ] - Integrate JWT logic for Authorization of REST API / validate session by JWT expirationDate
-[ ] - Write unit tests
-[ ] - Add template and overall handling for deleting user by administrator
-[ ] - Clean up code (unused, redundant or obsolete things)
+## Troubleshooting tips
+* If you cant connect to the webpanel, or Swagger, try checking your Docker containers. Simply shut down other containers, to ensure ports are free of use.

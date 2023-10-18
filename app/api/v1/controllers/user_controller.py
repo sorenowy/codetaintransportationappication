@@ -27,7 +27,6 @@ async def get_all_users(user=Depends(decodeJWT)):
     response_model_exclude_none=True
 )
 async def get_user_by_id(userId: int, token = Depends(decodeJWT)):
-    print(token)
     result = await user_service.get_user_by_id(userId)
     return ResponseSchema(detail=ResponseStatus.SUCCESS.name, result=result)
 

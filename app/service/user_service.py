@@ -43,7 +43,7 @@ class UserService:
         user_to_delete = await UserRepository.get_user_by_id(id)
         if user_to_delete is not None:
             await UserRepository.delete_user(id)
-            delete_email = UserService.__create_delete_confirmation_email(user_to_delete, user_to_delete.email)
+            delete_email = user_service.__create_delete_confirmation_email(user_to_delete, user_to_delete.email)
             await mail_sender.send_delete_confirmation_email(delete_email)
         else:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
@@ -54,18 +54,13 @@ class UserService:
 
 
     async def __validate_data(self, data: UserRequestDTO):
-        print(f"Entered validation! {data.email}, {data.password}")
         if not data.email or not data.password:
-            print("Entered no email or password!")
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
         if validate_email(data.email) is False:
-            print("Entered faulty email")
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid email format. It should look like this name@example.domain")
         if await UserRepository.get_user_by_email(data.email) is not None:
-            print("Entered duplicate email")
             raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="User with such email already exists.")
         if validate_password_policy(data.password) is False:
-            print("password is no no")
             raise HTTPException(status_code=status.HTTP_406_NOT_ACCEPTABLE, detail="Password does not confirms to security policy.")
         
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -17,15 +18,16 @@ export class AdminComponent {
   ngOnInit(): void {
     this.userService.getUsers().subscribe((users) => {
       this.users = users.result;
-      console.log(users)
-    });
+    }, (error) => { alert(error.error.detail) }
+    );
   }
 
   deleteUser(id: number) {
     this.userService.deleteUser(id).subscribe(() => {
       // Implement the logic to remove the route from the UI
         this.users = this.users.filter((user) => user.id !== id);
-    })
+    }, (error) => { alert(error.error.detail) }
+    )
   }
 
   logout() {

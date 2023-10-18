@@ -48,23 +48,17 @@ class RegisterService:
     
     # Private methods
     async def __validate_data(self, data: RegisterDTO):
-        print(f"Entered validation! {data.email}, {data.password}")
         if not data.email or not data.password or not data.name or not data.surname or not data.address:
-            print("Entered no data or password!")
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST)
         if validate_email(data.email) is False:
-            print("Entered faulty email")
             raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid email format. It should look like this name@example.domain")
         if await UserRepository.get_user_by_email(data.email) is not None:
-            print("Entered dupolicate email")
             raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail="User with such email already exists.")
         if validate_password_policy(data.password) is False:
-            print("Entered password is bebebebe email")
             raise HTTPException(status_code=status.HTTP_406_NOT_ACCEPTABLE, detail="Password does not confirms to security policy.")
 
 
     def __create_registration_email(self, data: RegisterDTO, token: str, request: Request) -> Email:
-        print("Debug 0")
         email = Email(
             email=[data.email],
             body={
@@ -73,7 +67,6 @@ class RegisterService:
                 "activation_link": generate_activation_link(token, request)
             }
         )
-        print(f"DEBUG {email.body}, {email.email}")
         return email
         
 register_service = RegisterService()

@@ -3,7 +3,7 @@
 <div class="mat-elevation-z8">
     <button mat-button *ngIf="isAdmin" [routerLink]="'/admin'">Admin Panel</button>
     <button mat-button *ngIf="isAdmin" [routerLink]="'/routes/add'">Add Route</button>
-    <button mat-button *ngIf="isAdmin" (click)="logout()">Logout</button>
+    <button mat-button (click)="logout()">Logout</button>
     <table mat-table [dataSource]="routes" class="mat-elevation-z8">
   
     <ng-container matColumnDef="id">

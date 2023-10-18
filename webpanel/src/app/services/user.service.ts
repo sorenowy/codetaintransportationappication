@@ -20,6 +20,6 @@ export class UserService {
 
   deleteUser(id: number): Observable<any> {
     // Implement the logic to delete a route
-    return this.http.delete(`${this.apiUrl}/users/${id}`);
+    return this.http.delete<any>(`${this.apiUrl}/users/${id}`);
   }
 }
