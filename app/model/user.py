@@ -24,10 +24,7 @@ class UserRequestDTO:
     is_admin: bool
     is_verified: bool
     verification_code: Optional[str] = None
-<<<<<<< Updated upstream
-    
-=======
->>>>>>> Stashed changes
+
 
 @dataclass
 class UserResponseDTO:

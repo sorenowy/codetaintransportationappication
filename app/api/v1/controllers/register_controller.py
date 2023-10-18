@@ -30,8 +30,4 @@ async def register(credentials: RegisterDTO, request: Request):
 )
 async def verify_user(token: str):
     await register_service.verify_account(token)
-<<<<<<< Updated upstream
-    return RedirectResponse("http://localhost:4200/routes")
-=======
     return RedirectResponse("http://localhost:4200/") # login page
->>>>>>> Stashed changes
